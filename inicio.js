@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
         openModal();
         // Redirigir a menu.html después de un retraso
         setTimeout(function() {
-          window.location.href = "menu.html"; // Aquí haces la redirección
+          window.location.href = "./src/Pages/menu/menu.html"; // Aquí haces la redirección
         }, 2000); // 2 segundos de retraso antes de redirigir
        
         // Mostrar mensaje de error
