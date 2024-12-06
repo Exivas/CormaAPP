@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Registro</title>
+  <!-- Incluyendo Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="form-container">
+    <div class="form-header">
+      <i class="fa-solid fa-user-plus"></i>
+      <h1>Registro</h1>
+    </div>
+    <form id="registrationForm">
+      <div class="input-group">
+        <i class="icon fa-solid fa-user"></i>
+        <input type="text" id="name" placeholder="Nombre completo" required>
+        <span class="error-message"></span>
+      </div>
+      <div class="input-group">
+        <i class="icon fa-solid fa-envelope"></i>
+        <input type="email" id="email" placeholder="Correo electrónico" required>
+        <span class="error-message"></span>
+      </div>
+      <div class="input-group">
+        <i class="icon fa-solid fa-lock"></i>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <span class="error-message"></span>
+      </div>
+      <div class="input-group">
+        <i class="icon fa-solid fa-lock"></i>
+        <input type="password" id="confirmPassword" placeholder="Confirmar contraseña" required>
+        <span class="error-message"></span>
+      </div>
+      <button type="submit">Registrarse</button>
+    </form>
+  </div>
+
+  <!-- Modal de éxito -->
+  <div id="successModal" class="modal hidden">
+    <div class="modal-content">
+      <i class="fa-solid fa-circle-check success-icon"></i>
+      <h2>Usuario registrado con éxito</h2>
+      <p>¡Ya puedes iniciar sesión!</p>
+      <button id="closeModal">OK</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

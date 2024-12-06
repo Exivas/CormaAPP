@@ -1,0 +1,62 @@
+.form-footer {
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .form-footer p {
+    margin-bottom: 10px;
+    color: #0072ff;
+    font-size: 14px;
+  }
+  
+  .register-button {
+    background: #0072ff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+/* Estilo del enlace de 'Registrarse' */
+.register-button {
+    display: inline-block;
+    background-color: #00c6ff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+ /* Estilo para el enlace 'Registrarse' */
+.register-button {
+    display: inline-block;
+    background-color: #00c6ff;
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none; /* Elimina el subrayado */
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    transition: background 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+  }
+  
+  /* Efecto al pasar el cursor sobre el enlace (como si fuera un botón) */
+  .register-button:hover {
+    background-color: #0072ff;
+    transform: scale(1.05);
+  }
+  
+  /* Efecto al hacer clic en el enlace */
+  .register-button:active {
+    transform: scale(1);
+  }
+  

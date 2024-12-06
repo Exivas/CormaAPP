@@ -1,0 +1,162 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Contenedor del formulario */
+  .form-container {
+    background: white;
+    border-radius: 10px;
+    padding: 20px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  /* Cabecera del formulario */
+  .form-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-header h1 {
+    color: #00c6ff;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .form-header i {
+    color: #00c6ff;
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+  
+  /* Grupos de entrada */
+  .input-group {
+    position: relative;
+    margin-bottom: 15px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px 40px;
+    border: 2px solid #00c6ff;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .input-group input:focus {
+    outline: none;
+    border-color: #0072ff;
+    box-shadow: 0 0 5px #00c6ff;
+  }
+  
+  .input-group .icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #0072ff;
+    font-size: 18px;
+  }
+  
+  /* Botón */
+  button[type="submit"] {
+    background: #00c6ff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background: #0072ff;
+    transform: scale(1.05);
+  }
+  
+  /* Modal */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    animation: zoomIn 0.5s ease;
+  }
+  
+  .success-icon {
+    color: aqua;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .modal h2 {
+    color: black;
+    margin: 0;
+  }
+  
+  .modal p {
+    color: black;
+    margin: 1rem 0;
+  }
+  
+  .modal button {
+    background: aqua;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .modal button:hover {
+    transform: scale(1.1);
+  }
+  
+  .modal.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  @keyframes zoomIn {
+    from {
+      transform: scale(0.8);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  

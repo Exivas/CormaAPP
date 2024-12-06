@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Pedidos</title>
+  <link rel="stylesheet" href="pedidos.css">
+</head>
+<body>
+
+  <!-- Contenedor principal -->
+  <div class="form-container">
+    <div class="form-header">
+      <i class="fas fa-box"></i>
+      <h1>Registrar Pedido</h1>
+    </div>
+
+    <!-- Formulario para agregar pedido -->
+    <form id="pedidoForm">
+      <div class="input-group">
+        <input type="text" id="cliente" placeholder="Nombre del Cliente">
+      </div>
+      <div class="input-group">
+        <input type="text" id="producto" placeholder="Producto">
+      </div>
+      <div class="input-group">
+        <input type="number" id="cantidad" placeholder="Cantidad">
+      </div>
+      <div class="input-group">
+        <input type="date" id="fecha" placeholder="Fecha de Pedido">
+      </div>
+      <button type="submit">Registrar Pedido</button>
+    </form>
+  </div>
+
+  <!-- Barra de búsqueda -->
+  <div class="search-container">
+    <input type="text" id="searchBar" placeholder="Buscar por cliente o producto">
+  </div>
+
+  <!-- Tabla de pedidos -->
+  <div class="table-container">
+    <table id="tablaPedidos">
+      <thead>
+        <tr>
+          <th onclick="ordenarPor('fecha')">Fecha</th>
+          <th onclick="ordenarPor('cliente')">Cliente</th>
+          <th onclick="ordenarPor('producto')">Producto</th>
+          <th onclick="ordenarPor('cantidad')">Cantidad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Los pedidos se agregarán aquí -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="pedidos.js"></script>
+</body>
+</html>

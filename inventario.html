@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Productos</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 80%;
+      max-width: 1200px;
+    }
+
+    /* Tabla de productos */
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #00c6ff;
+      color: white;
+    }
+
+    td {
+      background-color: #f9f9f9;
+    }
+
+    /* Paginación */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .pagination button {
+      background-color: #00c6ff;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      margin: 0 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .pagination button:hover {
+      background-color: #0072ff;
+    }
+
+    /* Filtros */
+    .filters {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .filters input, .filters select {
+      padding: 10px;
+      border: 2px solid #00c6ff;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .filters select {
+      width: 200px;
+    }
+
+    /* Contenedor del formulario */
+    .form-container {
+      background: white;
+      border-radius: 10px;
+      padding: 20px 30px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+      margin-top: 30px;
+    }
+
+    /* Cabecera del formulario */
+    .form-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-header h1 {
+      color: #00c6ff;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .form-header i {
+      color: #00c6ff;
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    /* Grupos de entrada */
+    .input-group {
+      position: relative;
+      margin-bottom: 15px;
+    }
+
+    .input-group input, .input-group select {
+      width: 100%;
+      padding: 10px 40px;
+      border: 2px solid #00c6ff;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: #0072ff;
+      box-shadow: 0 0 5px #00c6ff;
+    }
+
+    .input-group .icon {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      color: #0072ff;
+      font-size: 18px;
+    }
+
+    /* Botón */
+    button[type="submit"] {
+      background: #00c6ff;
+      color: white;
+      font-size: 16px;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    button[type="submit"]:hover {
+      background: #0072ff;
+      transform: scale(1.05);
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+      animation: zoomIn 0.5s ease;
+    }
+
+    .success-icon {
+      color: aqua;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal h2 {
+      color: black;
+      margin: 0;
+    }
+
+    .modal p {
+      color: black;
+      margin: 1rem 0;
+    }
+
+    .modal button {
+      background: aqua;
+      color: black;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .modal button:hover {
+      transform: scale(1.1);
+    }
+
+    .modal.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.8);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Filtros de búsqueda -->
+  <div class="filters">
+    <input type="text" id="search" placeholder="Buscar productos..." oninput="applyFilters()">
+    <select id="categoryFilter" onchange="applyFilters()">
+      <option value="">Filtrar por categoría</option>
+      <option value="electronics">Electrónica</option>
+      <option value="clothing">Ropa</option>
+      <option value="accessories">Accesorios</option>
+    </select>
+    <select id="priceFilter" onchange="applyFilters()">
+      <option value="">Filtrar por precio</option>
+      <option value="low">Bajo</option>
+      <option value="medium">Medio</option>
+      <option value="high">Alto</option>
+    </select>
+  </div>
+
+  <!-- Tabla de productos -->
+  <table id="productTable">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="productList">
+      <!-- Lista de productos se añadirá aquí -->
+    </tbody>
+  </table>
+
+  <!-- Paginación -->
+  <div class="pagination" id="pagination">
+    <!-- Paginación se añadirá aquí -->
+  </div>
+
+  <!-- Formulario para agregar producto -->
+  <div class="form-container" id="formContainer">
+    <div class="form-header">
+      <h1>Agregar Producto</h1>
+      <i class="fas fa-box"></i>
+    </div>
+    <form id="productForm">
+      <div class="input-group">
+        <input type="text" id="productName" placeholder="Nombre del producto" required>
+      </div>
+      <div class="input-group">
+        <input type="number" id="productQuantity" placeholder="Cantidad" required>
+      </div>
+      <div class="input-group">
+        <input type="number" id="productPrice" placeholder="Precio" required>
+      </div>
+      <div class="input-group">
+        <select id="productCategory" required>
+          <option value="">Selecciona categoría</option>
+          <option value="electronics">Electrónica</option>
+          <option value="clothing">Ropa</option>
+          <option value="accessories">Accesorios</option>
+        </select>
+      </div>
+      <button type="submit">Agregar Producto</button>
+    </form>
+  </div>
+
+</div>
+
+<script>
+  let products = [];
+  let currentPage = 1;
+  let itemsPerPage = 5;
+
+  // Función para agregar un producto
+  function addProduct(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById("productName").value;
+    const quantity = parseInt(document.getElementById("productQuantity").value);
+    const price = parseFloat(document.getElementById("productPrice").value);
+    const category = document.getElementById("productCategory").value;
+
+    const product = {
+      name,
+      quantity,
+      price,
+      category
+    };
+
+    products.push(product);
+    displayProducts();
+    showSuccessModal('Producto agregado correctamente');
+  }
+
+  // Mostrar productos en la tabla
+  function displayProducts() {
+    const tableBody = document.getElementById("productList");
+    tableBody.innerHTML = '';
+
+    const filteredProducts = applyFiltersToProducts(products);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const paginatedProducts = filteredProducts.slice(startIndex, startIndex + itemsPerPage);
+
+    paginatedProducts.forEach(product => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${product.name}</td>
+        <td>${product.quantity}</td>
+        <td>$${product.price.toFixed(2)}</td>
+        <td><button onclick="editProduct('${product.name}')">Editar</button><button onclick="deleteProduct('${product.name}')">Eliminar</button></td>
+      `;
+      tableBody.appendChild(row);
+    });
+
+    updatePagination(filteredProducts.length);
+  }
+
+  // Editar producto
+  function editProduct(name) {
+    alert(`Editar producto: ${name}`);
+  }
+
+  // Eliminar producto
+  function deleteProduct(name) {
+    products = products.filter(product => product.name !== name);
+    displayProducts();
+    showSuccessModal('Producto eliminado');
+  }
+
+  // Aplicar filtros
+  function applyFilters() {
+    currentPage = 1;
+    displayProducts();
+  }
+
+  // Aplicar filtros a los productos
+  function applyFiltersToProducts(products) {
+    const searchQuery = document.getElementById("search").value.toLowerCase();
+    const categoryFilter = document.getElementById("categoryFilter").value;
+    const priceFilter = document.getElementById("priceFilter").value;
+
+    return products.filter(product => {
+      const matchesSearch = product.name.toLowerCase().includes(searchQuery);
+      const matchesCategory = categoryFilter ? product.category === categoryFilter : true;
+      const matchesPrice = priceFilter === "low" ? product.price < 50 :
+                           priceFilter === "medium" ? product.price >= 50 && product.price < 100 :
+                           priceFilter === "high" ? product.price >= 100 : true;
+
+      return matchesSearch && matchesCategory && matchesPrice;
+    });
+  }
+
+  // Actualizar paginación
+  function updatePagination(totalItems) {
+    const pagination = document.getElementById("pagination");
+    pagination.innerHTML = '';
+    
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    for (let i = 1; i <= totalPages; i++) {
+      const button = document.createElement("button");
+      button.innerText = i;
+      button.onclick = function() {
+        currentPage = i;
+        displayProducts();
+      };
+      pagination.appendChild(button);
+    }
+  }
+
+  // Mostrar modal de éxito
+  function showSuccessModal(message) {
+    const modal = document.createElement('div');
+    modal.className = 'modal show';
+    modal.innerHTML = `
+      <div class="modal-content">
+        <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+        <h2>Éxito</h2>
+        <p>${message}</p>
+        <button onclick="closeModal()">Cerrar</button>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
+
+  // Cerrar modal
+  function closeModal() {
+    document.querySelector('.modal.show').remove();
+  }
+
+  // Inicializar evento de formulario
+  document.getElementById("productForm").addEventListener("submit", addProduct);
+</script>
+
+</body>
+</html>

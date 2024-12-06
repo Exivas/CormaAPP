@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Deudas</title>
+  <link rel="stylesheet" href="deudas.css">
+</head>
+<body>
+
+  <!-- Contenedor principal -->
+  <div class="form-container">
+    <div class="form-header">
+      <i class="fas fa-credit-card"></i>
+      <h1>Registrar Deuda</h1>
+    </div>
+
+    <!-- Formulario para agregar deuda -->
+    <form id="deudaForm">
+      <div class="input-group">
+        <input type="text" id="deudor" placeholder="Nombre del Deudor">
+      </div>
+      <div class="input-group">
+        <input type="number" id="monto" placeholder="Monto de la Deuda">
+      </div>
+      <div class="input-group">
+        <input type="date" id="fechaVencimiento" placeholder="Fecha de Vencimiento">
+      </div>
+      <button type="submit">Registrar Deuda</button>
+    </form>
+  </div>
+
+  <!-- Barra de búsqueda -->
+  <div class="search-container">
+    <input type="text" id="searchBar" placeholder="Buscar por deudor o monto">
+  </div>
+
+  <!-- Resumen de deudas -->
+  <div class="summary-container">
+    <h2>Resumen de Deudas</h2>
+    <p>Total de Deudas Pendientes: <span id="totalPendientes">$0</span></p>
+    <p>Total de Deudas Pagadas: <span id="totalPagadas">$0</span></p>
+  </div>
+
+  <!-- Tabla de deudas -->
+  <div class="table-container">
+    <table id="tablaDeudas">
+      <thead>
+        <tr>
+          <th onclick="ordenarPor('fechaVencimiento')">Fecha de Vencimiento</th>
+          <th onclick="ordenarPor('deudor')">Deudor</th>
+          <th onclick="ordenarPor('monto')">Monto</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Las deudas se agregarán aquí -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="deudas.js"></script>
+</body>
+</html>
