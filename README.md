@@ -35,3 +35,30 @@ CormaAPP es una aplicación web diseñada para gestionar deudas y pedidos. La ap
   
 ## Uso
 Los usuarios pueden interactuar con formularios para registrar deudas y pedidos, buscar elementos específicos y ver resúmenes de sus registros. La aplicación está diseñada para ser intuitiva y fácil de usar, con un enfoque en la gestión eficiente de información financiera y de pedidos.
+
+
+# Futura ISUES
+
+## 1. Mejora de la Seguridad en el Inicio de Sesión
+- **Validación de Usuario:** Implementar una lógica de validación de usuario más robusta en el servidor en lugar de solo en el cliente.
+- **Mensajes de Error:** Evitar mostrar mensajes de error genéricos. Proporcionar mensajes más específicos para mejorar la experiencia del usuario.
+
+## 2. Mejora de la Experiencia de Usuario
+- **Feedback Visual:** Añadir feedback visual al botón de inicio de sesión mientras se procesa la solicitud, como un spinner o un cambio de color.
+- **Cierre Automático del Modal:** Considerar cerrar automáticamente el modal de éxito después de unos segundos para mejorar la fluidez de la experiencia.
+
+## 3. Mejora del Código JavaScript
+- **Modularización:** Dividir el código JavaScript en funciones más pequeñas y modulares para mejorar la legibilidad y el mantenimiento.
+- **Uso de Constantes:** Utilizar constantes para valores repetidos, como los mensajes de estado de las deudas, para evitar errores tipográficos y facilitar cambios futuros.
+
+## 4. Mejora del HTML y CSS
+- **Accesibilidad:** Asegurarse de que todos los elementos interactivos sean accesibles mediante teclado y tengan etiquetas ARIA apropiadas.
+- **Estilos CSS:** Considerar el uso de clases CSS en lugar de estilos en línea para una mejor separación de preocupaciones y reutilización de estilos.
+
+## 5. Mejora de la Funcionalidad de Gestión de Deudas
+- **Confirmación de Acciones:** Añadir confirmaciones para acciones destructivas como eliminar una deuda, para evitar eliminaciones accidentales.
+- **Filtrado y Búsqueda:** Implementar funcionalidades de filtrado y búsqueda en la tabla de deudas para facilitar la gestión de grandes volúmenes de datos.
+
+## 6. Mejora de la Documentación
+- **Comentarios en el Código:** Añadir comentarios claros y concisos en el código para explicar la lógica y el propósito de las funciones.
+- **Guía de Usuario:** Proporcionar una guía de usuario o documentación que explique cómo utilizar la aplicación y sus funcionalidades.
