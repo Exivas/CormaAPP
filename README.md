@@ -37,7 +37,7 @@ CormaAPP es una aplicación web diseñada para gestionar deudas y pedidos. La ap
 Los usuarios pueden interactuar con formularios para registrar deudas y pedidos, buscar elementos específicos y ver resúmenes de sus registros. La aplicación está diseñada para ser intuitiva y fácil de usar, con un enfoque en la gestión eficiente de información financiera y de pedidos.
 
 
-# Futura ISUES
+# ISUES
 
 ## 1. Mejora de la Seguridad en el Inicio de Sesión
 - **Validación de Usuario:** Implementar una lógica de validación de usuario más robusta en el servidor en lugar de solo en el cliente.
